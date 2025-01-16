@@ -31,26 +31,46 @@ public class AppTest {
         URL url = new URL("http://127.0.0.1:4723/");
         driver = new AppiumDriver(url, cap);
 
-        System.out.println("Hola");
+        System.out.println("Inicia conexión");
 
         // Primer clic
         driver.findElement(By.xpath("//android.widget.TextView[@text='Dar acceso a ubicación']")).click();
-        System.out.println("Primer clic");
+        System.out.println("Click de Acceso a ubicación");
 
         // Esperar a que el próximo botón esté visible o interactuable después del clic
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera máxima de 10 segundos
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera de 10 segundos
         WebElement enabledButton = wait.until(
                 ExpectedConditions.elementToBeClickable(By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
         );
 
-        System.out.println("enabled");
+        System.out.println("Click de Acceso a ubicación Flotante Android");
 
         // Accionar el botón
         enabledButton.click();
-        System.out.println("Pasaclick");
+            System.out.println("Permiso concedido");
 
-        // Colocar puntero
-        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='Correo, Contraseña']/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.widget.EditText")).click();
-        System.out.println("Coloca puntero");
+
+
+
+
+            WebDriverWait SegundaEspera = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement enabledButton2 = SegundaEspera.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath("//android.view.ViewGroup[@content-desc=\"Correo, Contraseña\"]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.widget.EditText"))
+            );
+
+        //Click para pontero en campo correo
+        enabledButton2.click();
+
+        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Correo, Contraseña\"]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.widget.EditText")).sendKeys("danny.escalante@cuida.pe");
+        System.out.println("Correo ingresado");
+
+        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Correo, Contraseña\"]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.widget.EditText")).sendKeys("danny.escalante");
+        System.out.println("Contraseña ingresada");
+
+        driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Iniciar sesión\"]")).click();
+        System.out.println("Click en login");
+
+
+
     }
 }
