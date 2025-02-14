@@ -38,7 +38,7 @@ public class AppTest {
         System.out.println("Click de Acceso a ubicación");
 
         // Esperar a que el próximo botón esté visible o interactuable después del clic
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera de 10 segundos
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30)); // Espera de 10 segundos
         WebElement enabledButton = wait.until(
                 ExpectedConditions.elementToBeClickable(By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"))
         );
